@@ -2,19 +2,15 @@ import unittest
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
-class TestSelenium(unittest.TestCase):
-    
-    def test_selenium(self):
-        driver = webdriver.Firefox()
-        driver.get("http://www.python.org")
-        assert "Python" in driver.title
-        elem = driver.find_element_by_name("q")
-        elem.clear()
-        elem.send_keys("pycon")
-        elem.send_keys(Keys.RETURN)
-        assert "No results found." not in driver.page_source
-        driver.close()
 
+class TestSelenium(unittest.TestCase):
+
+    def test_phantomjs(self):
+        driver = webdriver.PhantomJS() # add phantomjs to your PATH
+        driver.set_window_size(1024, 768)
+        driver.get('https://google.com/')
+        sbtn = driver.find_element_by_css_selector('input[name="btnI"]')
+        sbtn.click()
 
 
 if __name__ == '__main__':
